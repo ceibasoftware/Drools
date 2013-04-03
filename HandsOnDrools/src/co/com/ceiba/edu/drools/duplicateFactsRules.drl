@@ -1,0 +1,40 @@
+package co.com.ceiba.edu.drools
+
+import java.util.Date
+import java.util.List
+import co.com.ceiba.edu.drools.Server
+import co.com.ceiba.edu.drools.Virtualization
+import co.com.ceiba.edu.drools.VirtualizationRequest
+
+rule "Verificar si existen otros servidores con mas recursos disponibles "
+salience 100
+dialect "mvel"
+when
+	$request : VirtualizationRequest($serverName : serverName)
+	$server : Server(name == $serverName)
+	$anotherServer : Server(name != $serverName)
+	$servers : List(size > 0) from collect(Server(name != $serverName,
+	                                              processors > $server.processors,
+	                                              memory > $server.memory,
+	                                              diskSpace > $server.diskSpace))
+then
+	System.out.println("La siguiente lista de servidores tienen mas recursos disponibles.");
+	for (Object object : $servers) {
+		Server server = (Server)object;
+		System.out.println("Server: " + server);
+	}
+	$request.successful = false;
+	retract($request);
+end
+
+rule "Solicitud de virtualización"
+dialect "mvel"
+when
+	$request : VirtualizationRequest($serverName : serverName)
+	$server : Server(name==$serverName)
+then
+	System.out.println("La nueva virtualización fue agregada al servidor " + $serverName);
+	$server.virtualizations.add($request.virtualization);
+	$request.successful = true;
+	retract($request);
+end

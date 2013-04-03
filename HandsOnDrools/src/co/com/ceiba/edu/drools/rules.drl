@@ -1,4 +1,4 @@
-package drools.cookbook.chapter01
+package co.com.ceiba.edu.drools
 
 import java.util.Date
 import java.util.List
@@ -8,10 +8,10 @@ global java.util.List serversAvailability;
 declare Server
    name : String
    processors : int
-   memory : int // megabytes
-   diskSpace : int // gigabytes
-   virtualizations : List // list of Virtualization objects
-   cpuUsage : int // percentage
+   memory : int 
+   diskSpace : int 
+   virtualizations : List 
+   cpuUsage : int 
 end
 
 declare ServerStatus
@@ -29,16 +29,16 @@ declare Virtualization
     memory : int
 end
 
-rule "check minimum server configuration"
+rule "Verificar la configuración mínima de un servidor"
 dialect "mvel"
 when
 	$server : Server(processors < 2 || memory<=1024 || diskSpace<=250)
 then
-	System.out.println("Server \"" + $server.name + "\" was rejected by don't apply the minimum configuration.");
+	System.out.println("El servidor \"" + $server.name + "\" fue rechazado porque no tiene la configuración mínima.");
 	retract($server);
 end
 
-rule "check available server for a new virtualization"
+rule "Verificar si existe un servidor para ser virtualizado."
 dialect "mvel"
 when
 	$virtualization : Virtualization()

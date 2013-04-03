@@ -1,0 +1,21 @@
+package co.com.ceiba.edu.drools.fusion;
+
+import co.com.ceiba.edu.drools.fusion.FlightStatus
+import co.com.ceiba.edu.drools.fusion.FlightControl
+
+global co.com.ceiba.edu.drools.fusion.FlightControl control;
+
+declare FlightStatus
+    @role(event)
+    @timestamp(timestamp)
+end
+
+rule "First contact"
+salience 100
+when
+    $currentFlight : FlightStatus()
+    not (exists (FlightStatus(this != $currentFlight, flight == $currentFlight.flight)))
+then
+    control.addFlight($currentFlight);
+    System.out.println("First contact with Flight " + $currentFlight.getFlight());
+end

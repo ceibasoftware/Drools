@@ -28,7 +28,7 @@ public class FactsDeclarationTest {
 
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
-        FactType serverType = kbase.getFactType("drools.cookbook.chapter01", "Server");
+        FactType serverType = kbase.getFactType("co.com.ceiba.edu.drools", "Server");
 
         assertNotNull(serverType);
 
@@ -36,9 +36,9 @@ public class FactsDeclarationTest {
         try {
             debianServer = serverType.newInstance();
         } catch (InstantiationException e) {
-            System.err.println("the class Server on drools.cookbook.chapter01 package hasn't a constructor");
+            System.err.println("La clase Server no tiene constructor");
         } catch (IllegalAccessException e) {
-            System.err.println("unable to access the class Server on drools.cookbook.chapter01 package");
+            System.err.println("No fue posible instanciar la clase Server");
         }
         serverType.set(debianServer, "name", "server001");
         serverType.set(debianServer, "processors", 1);
@@ -59,9 +59,9 @@ public class FactsDeclarationTest {
 
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
-        FactType serverType = kbase.getFactType("drools.cookbook.chapter01", "Server");
-        FactType serverStatusType = kbase.getFactType("drools.cookbook.chapter01", "ServerStatus");
-        FactType virtualizationType = kbase.getFactType("drools.cookbook.chapter01", "Virtualization");
+        FactType serverType = kbase.getFactType("co.com.ceiba.edu.drools", "Server");
+        FactType serverStatusType = kbase.getFactType("co.com.ceiba.edu.drools", "ServerStatus");
+        FactType virtualizationType = kbase.getFactType("co.com.ceiba.edu.drools", "Virtualization");
 
         assertNotNull(serverType);
 
@@ -69,9 +69,9 @@ public class FactsDeclarationTest {
         try {
             debianServer = serverType.newInstance();
         } catch (InstantiationException e) {
-            System.err.println("the class Server on drools.cookbook.chapter01 package hasn't a constructor");
+            System.err.println("La clase Server no tiene constructor");
         } catch (IllegalAccessException e) {
-            System.err.println("unable to access the class Server on drools.cookbook.chapter01 package");
+            System.err.println("No fue posible instanciar la clase Server");
         }
         serverType.set(debianServer, "name", "server002");
         serverType.set(debianServer, "processors", 4);
@@ -83,9 +83,9 @@ public class FactsDeclarationTest {
         try {
             fedoraServer = serverType.newInstance();
         } catch (InstantiationException e) {
-            System.err.println("the class Server on drools.cookbook.chapter01 package hasn't a constructor");
+            System.err.println("La clase Server no tiene constructor");
         } catch (IllegalAccessException e) {
-            System.err.println("unable to access the class Server on drools.cookbook.chapter01 package");
+            System.err.println("No fue posible instanciar la clase Server");
         }
         serverType.set(fedoraServer, "name", "server003");
         serverType.set(fedoraServer, "processors", 2);
@@ -103,9 +103,9 @@ public class FactsDeclarationTest {
             instance003 = virtualizationType.newInstance();
             request = virtualizationType.newInstance();
         } catch (InstantiationException e) {
-            System.err.println("the class Virtualization on drools.cookbook.chapter01 package hasn't a constructor");
+            System.err.println("La clase Virtualizacion no tiene constructor");
         } catch (IllegalAccessException e) {
-            System.err.println("unable to access the class Virtualization on drools.cookbook.chapter01 package");
+            System.err.println("No fue posible instanciar la clase Virtualizacion");
         }
 
         virtualizationType.set(instance001, "name", "instance001");
@@ -149,7 +149,7 @@ public class FactsDeclarationTest {
         for (Object server : servers) {
             String name = (String) serverStatusType.get(server, "name");
             Integer freeDiskSpace = (Integer) serverStatusType.get(server, "freeDiskSpace");
-            System.out.println("Server \"" + name + "\" has " + freeDiskSpace + " MB of free disk space");
+            System.out.println("El servidor \"" + name + "\" tiene " + freeDiskSpace + " MB de espacio libre");
         }
     }
 
