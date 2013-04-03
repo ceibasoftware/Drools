@@ -10,12 +10,12 @@ declare FlightStatus
     @timestamp(timestamp)
 end
 
-rule "First contact"
+rule "Contacto"
 salience 100
 when
     $currentFlight : FlightStatus()
     not (exists (FlightStatus(this != $currentFlight, flight == $currentFlight.flight)))
 then
     control.addFlight($currentFlight);
-    System.out.println("First contact with Flight " + $currentFlight.getFlight());
+    System.out.println("Contacto con el vuelo " + $currentFlight.getFlight());
 end
