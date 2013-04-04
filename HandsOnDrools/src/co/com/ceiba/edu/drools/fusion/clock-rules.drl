@@ -1,10 +1,10 @@
-package drools.cookbook;
+package co.com.ceiba.edu.drools.fusion;
 
-import drools.cookbook.model.FlightStatus
-import drools.cookbook.model.FlightControl
-import drools.cookbook.model.EmergencySignal
+import co.com.ceiba.edu.drools.fusion.FlightStatus
+import co.com.ceiba.edu.drools.fusion.FlightControl
+import co.com.ceiba.edu.drools.fusion.EmergencySignal
 
-import drools.cookbook.helper.EmergencySystem
+import co.com.ceiba.edu.drools.fusion.EmergencySystem
 
 global co.com.ceiba.edu.drools.fusion.FlightControl control;
 

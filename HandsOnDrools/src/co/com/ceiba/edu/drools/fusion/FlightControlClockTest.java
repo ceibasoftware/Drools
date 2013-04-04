@@ -31,7 +31,7 @@ public class FlightControlClockTest {
     @Before
     public void start() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(new ClassPathResource("rules.drl", getClass()), ResourceType.DRL);
+        kbuilder.add(new ClassPathResource("clock-rules.drl", getClass()), ResourceType.DRL);
 
         if (kbuilder.hasErrors()) {
             if (kbuilder.getErrors().size() > 0) {

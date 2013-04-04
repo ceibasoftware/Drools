@@ -42,7 +42,7 @@ public class RulesVerifier {
         assertNotNull(result);
 
         assertEquals(3, result.getBySeverity(Severity.ERROR).size());
-        assertEquals(3, result.getBySeverity(Severity.WARNING).size());
+        assertEquals(2, result.getBySeverity(Severity.WARNING).size());
         assertEquals(0, result.getBySeverity(Severity.NOTE).size());
 
         Collection<VerifierMessageBase> noteMessages = result.getBySeverity(Severity.NOTE);
@@ -78,7 +78,7 @@ public class RulesVerifier {
         assertNotNull(result);
 
         assertEquals(3, result.getBySeverity(Severity.ERROR).size());
-        assertEquals(3, result.getBySeverity(Severity.WARNING).size());
+        assertEquals(2, result.getBySeverity(Severity.WARNING).size());
         assertEquals(0, result.getBySeverity(Severity.NOTE).size());
 
         VerifierReportWriter htmlWriter = VerifierReportWriterFactory.newHTMLReportWriter();
@@ -112,7 +112,7 @@ public class RulesVerifier {
             for (VerifierError verifierError : errors) {
                 System.err.println(verifierError.getMessage());
             }
-            fail("rules with errors");
+            fail("reglas con errores");
         }
 
     }

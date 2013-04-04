@@ -4,6 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Drools-Standalone"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="/Users/nelsonmanuelmorenorestrepo/Downloads/quartz-2.1.7 2/quartz-all-2.1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nelson.moreno/Downloads/quartz-2.1.7/quartz-all-2.1.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/nelson.moreno/Downloads/glazedlists_java15-1.7.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

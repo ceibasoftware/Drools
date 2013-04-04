@@ -47,10 +47,10 @@ public class CalendarBasedRulesTest {
 
         if (isWeekday()) {
             Assert.assertEquals(true, virtualizationRequest.isSuccessful());
-            System.out.println("The virtualization request was accepted on server: " + rhel.getServerName());
+            System.out.println("La virtualización fue acepto : " + rhel.getServerName());
         } else {
             Assert.assertEquals(false, virtualizationRequest.isSuccessful());
-            System.out.println("The virtualization request was rejected because is weekend.");
+            System.out.println("La virtualización fue rechazada porque es fin de semana.");
         }
 
     }
