@@ -2,9 +2,9 @@ package co.com.ceiba.edu.drools
 
 import java.util.Date
 import java.util.List
-import co.com.ceiba.edu.drools.Server
-import co.com.ceiba.edu.drools.Virtualization
-import co.com.ceiba.edu.drools.VirtualizationRequest
+import co.com.ceiba.edu.drools.facts.Server
+import co.com.ceiba.edu.drools.facts.Virtualization
+import co.com.ceiba.edu.drools.facts.VirtualizationRequest
 
 rule "Verificar si existen otros servidores con mas recursos disponibles "
 salience 100
@@ -27,13 +27,13 @@ then
 	retract($request);
 end
 
-rule "Solicitud de virtualización"
+rule "Solicitud de virtualizaciï¿½n"
 dialect "mvel"
 when
 	$request : VirtualizationRequest($serverName : serverName)
 	$server : Server(name==$serverName)
 then
-	System.out.println("La nueva virtualización fue agregada al servidor " + $serverName);
+	System.out.println("La nueva virtualizaciï¿½n fue agregada al servidor " + $serverName);
 	$server.virtualizations.add($request.virtualization);
 	$request.successful = true;
 	retract($request);

@@ -1,4 +1,4 @@
-package co.com.ceiba.edu.drools;
+package co.com.ceiba.edu.drools.facts;
 
 
 public class VirtualizationRequest {

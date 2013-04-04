@@ -1,4 +1,4 @@
-package co.com.ceiba.edu.drools;
+package co.com.ceiba.edu.drools.duplicated;
 
 import static org.junit.Assert.assertEquals;
 
@@ -14,6 +14,10 @@ import org.drools.io.impl.ClassPathResource;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
+import co.com.ceiba.edu.drools.facts.Server;
+import co.com.ceiba.edu.drools.facts.Virtualization;
+import co.com.ceiba.edu.drools.facts.VirtualizationRequest;
 
 
 public class DuplicatedFactsInsertion {
@@ -36,7 +40,7 @@ public class DuplicatedFactsInsertion {
 
         assertEquals(3, ksession.getObjects().size());
 
-        System.out.println("Número de hechos : " + ksession.getObjects().size());
+        System.out.println("Nï¿½mero de hechos : " + ksession.getObjects().size());
 
         Server anotherDebianServer = new Server("debianServer", 8, 8192, 2048, 0);
         ksession.insert(anotherDebianServer);

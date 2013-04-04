@@ -1,4 +1,8 @@
-package co.com.ceiba.edu.drools;
+package co.com.ceiba.edu.drools.facts;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 
 public class Virtualization {
@@ -7,6 +11,7 @@ public class Virtualization {
     private String serverName;
     private int memory;
     private int diskSpace;
+    private List<Service> services = new ArrayList<Service>();
 
     public Virtualization(String name, String serverName, int memory, int diskSpace) {
         this.name = name;
@@ -38,6 +43,18 @@ public class Virtualization {
     }
     public int getDiskSpace() {
         return diskSpace;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
+
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void addService(Service service) {
+        this.services.add(service);
     }
 
 }

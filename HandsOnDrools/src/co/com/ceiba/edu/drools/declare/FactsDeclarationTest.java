@@ -1,4 +1,4 @@
-package co.com.ceiba.edu.drools;
+package co.com.ceiba.edu.drools.declare;
 
 
 import static org.junit.Assert.assertEquals;
@@ -28,7 +28,7 @@ public class FactsDeclarationTest {
 
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
-        FactType serverType = kbase.getFactType("co.com.ceiba.edu.drools", "Server");
+        FactType serverType = kbase.getFactType("co.com.ceiba.edu.drools.declare", "Server");
 
         assertNotNull(serverType);
 
@@ -59,9 +59,9 @@ public class FactsDeclarationTest {
 
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
-        FactType serverType = kbase.getFactType("co.com.ceiba.edu.drools", "Server");
-        FactType serverStatusType = kbase.getFactType("co.com.ceiba.edu.drools", "ServerStatus");
-        FactType virtualizationType = kbase.getFactType("co.com.ceiba.edu.drools", "Virtualization");
+        FactType serverType = kbase.getFactType("co.com.ceiba.edu.drools.declare", "Server");
+        FactType serverStatusType = kbase.getFactType("co.com.ceiba.edu.drools.declare", "ServerStatus");
+        FactType virtualizationType = kbase.getFactType("co.com.ceiba.edu.drools.declare", "Virtualization");
 
         assertNotNull(serverType);
 
@@ -156,7 +156,7 @@ public class FactsDeclarationTest {
     @Before
     public void createKnowledgeBase() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(new ClassPathResource("rules.drl", getClass()), ResourceType.DRL);
+        kbuilder.add(new ClassPathResource("declare-rules.drl", getClass()), ResourceType.DRL);
 
         if (kbuilder.hasErrors()) {
             if (kbuilder.getErrors().size() > 0) {

@@ -1,0 +1,19 @@
+package co.com.ceiba.edu.drools.calendar
+
+import java.util.Date
+import java.util.List
+import co.com.ceiba.edu.drools.facts.Server
+import co.com.ceiba.edu.drools.facts.Virtualization
+import co.com.ceiba.edu.drools.facts.VirtualizationRequest
+
+rule "Nueva solicitud de virtualización"
+calendars "dias-laborales"
+when
+	$request : VirtualizationRequest($serverName : serverName)
+	$server : Server(name==$serverName)
+then
+	System.out.println("Nueva virtualización agregada al servidor " + $serverName);
+	$server.getVirtualizations().add($request.getVirtualization());
+	$request.setSuccessful(true);
+	retract($request);
+end
