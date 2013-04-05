@@ -9,33 +9,6 @@ public class CotizacionVacaciones {
 	private String ciudad;
 	private String modalidad;
 	private int tarifaBase;
-	private Date feinicio;
-	private Date fefin;
-	private int descuento;
-	
-	public Date getFeinicio() {
-		return feinicio;
-	}
-
-	public void setFeinicio(Date feinicio) {
-		this.feinicio = feinicio;
-	}
-
-	public Date getFefin() {
-		return fefin;
-	}
-
-	public void setFefin(Date fefin) {
-		this.fefin = fefin;
-	}
-
-	public int getDescuento() {
-		return descuento;
-	}
-
-	public void setDescuento(int descuento) {
-		this.descuento = descuento;
-	}
 
 	public CotizacionVacaciones(){
 	}
@@ -44,8 +17,6 @@ public class CotizacionVacaciones {
 		this.plan = plan;
 		this.ciudad = ciudad;
 		this.modalidad = modalidad;
-		this.feinicio = new Date();
-		this.fefin = new Date();
 	}
 	
 	public String getPlan() {
@@ -71,23 +42,5 @@ public class CotizacionVacaciones {
 	}
 	public void setTarifaBase(int tarifaBase) {
 		this.tarifaBase = tarifaBase;
-	}
-	
-	public boolean before(String date){
-		try {
-			return this.fefin.before(new SimpleDateFormat("yyyy-mm-dd").parse(date));
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return false;
-		}
-	}
-
-	public boolean after(String date){
-		try {
-			return this.feinicio.after(new SimpleDateFormat("yyyy-mm-dd").parse(date));
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return false;
-		}
 	}
 }

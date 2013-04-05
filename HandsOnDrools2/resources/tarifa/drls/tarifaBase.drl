@@ -1,0 +1,68 @@
+package Tarifa_Plan_Vacacional
+
+import co.com.drools.example.vacation.domain.*;
+no-loop true
+
+rule "Tarifa Base Plan 1"
+	when
+		$c : CotizacionVacaciones(plan == "Todo Incluido", ciudad == "CARTAGENA", modalidad == "Individual")
+	then
+		$c.setTarifaBase(100);
+		update($c);
+end
+
+rule "Tarifa Base Plan 2"
+	when
+		$c : CotizacionVacaciones(plan == "Todo Incluido", ciudad == "SANTA MARTA", modalidad == "Individual")
+	then
+		$c.setTarifaBase(90);
+		update($c);
+end
+
+rule "Tarifa Base Plan 3"
+	when
+		$c : CotizacionVacaciones(plan == "Todo Incluido", ciudad == "CARTAGENA", modalidad == "Familiar")
+	then
+		$c.setTarifaBase(80);
+	update($c);
+end
+
+rule "Tarifa Base Plan 4"
+	when
+		$c : CotizacionVacaciones(plan == "Todo Incluido", ciudad == "SANTA MARTA", modalidad == "Familiar")
+	then
+		$c.setTarifaBase(85);
+update($c);
+end
+
+rule "Tarifa Base Plan 5"
+	when
+		$c : CotizacionVacaciones(plan == "Hospedaje + Desayuno", ciudad == "CARTAGENA", modalidad == "Individual")
+	then
+		$c.setTarifaBase(100);
+	update($c);
+end
+
+rule "Tarifa Base Plan 6"
+	when
+		$c : CotizacionVacaciones(plan == "Hospedaje + Desayuno", ciudad == "SANTA MARTA", modalidad == "Individual")
+	then
+		$c.setTarifaBase(90);
+	update($c);
+end
+
+rule "Tarifa Base Plan 7"
+	when
+		$c : CotizacionVacaciones(plan == "Hospedaje + Desayuno", ciudad == "CARTAGENA", modalidad == "Familiar")
+	then
+		$c.setTarifaBase(100);
+	update($c);
+end
+
+rule "Tarifa Base Plan 8"
+	when
+		$c : CotizacionVacaciones(plan == "Hospedaje + Desayuno", ciudad == "SANTA MARTA", modalidad == "Familiar")
+	then
+		$c.setTarifaBase(90);
+update($c);
+end
