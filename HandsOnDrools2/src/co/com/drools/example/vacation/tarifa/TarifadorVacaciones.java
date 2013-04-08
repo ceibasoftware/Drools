@@ -14,8 +14,12 @@ import org.drools.runtime.StatelessKnowledgeSession;
 
 import co.com.drools.example.vacation.domain.CotizacionVacaciones;
 
-public class TarifadorVacaciones {
+public class TarifadorVacaciones implements ITarifadorVacaciones {
 
+	/* (non-Javadoc)
+	 * @see co.com.drools.example.vacation.tarifa.ITarifadorVacaciones#tarifar(co.com.drools.example.vacation.domain.CotizacionVacaciones)
+	 */
+	@Override
 	public void tarifar(CotizacionVacaciones cot) {
 		
 		StatelessKnowledgeSession ksession = createKSession();
@@ -25,7 +29,8 @@ public class TarifadorVacaciones {
 
 	private StatelessKnowledgeSession createKSession(){		
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(new ClassPathResource("tarifa/decisiontables/TableDecisionExample1.xls"),ResourceType.DTABLE);
+        ClassPathResource resource = getResourceFromXLS();
+        kbuilder.add(resource,resource.getResourceType());
 
         KnowledgeBuilderErrors errors = kbuilder.getErrors();
         if (errors.size() > 0) {
@@ -43,7 +48,25 @@ public class TarifadorVacaciones {
         return ksession;
     }
 
+	/**
+	 * Crea el recurso a partir de un archivo drl
+	 * @return
+	 */
+	private ClassPathResource getResourceFromDRL() {
+		ClassPathResource resource = new ClassPathResource("tarifa/drls/tarifaBase.drl");
+		resource.setResourceType(ResourceType.DRL);
+		return resource;
+	}
+
 	
-	
+	/**
+	 * Crea el recurso a partir de una tabla de excel
+	 * @return
+	 */
+	private ClassPathResource getResourceFromXLS() {
+		ClassPathResource resource = new ClassPathResource("tarifa/decisiontables/TableDecisionExample1.xls");
+		resource.setResourceType(ResourceType.DTABLE);
+		return resource;
+	}	
 	
 }
