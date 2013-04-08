@@ -38,7 +38,7 @@ rule "Call a Cat when it is in a tree"
        $p.setPetCallCount($p.getPetCallCount()+1);
        update($p);
 end
-
+/*
 rule "Appear a dog on the street"
 	when
         $cat: Pet(position == "on the street", type == PetType.CAT)
@@ -62,4 +62,4 @@ rule "The dog chase the cat"
 		update($dog);
 		update($cat);	
 end
-
+*/
