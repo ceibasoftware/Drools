@@ -1,0 +1,65 @@
+package co.com.ceiba.edu.drools.pojo;
+
+import co.com.ceiba.edu.drools.pojo.Person;
+import co.com.ceiba.edu.drools.pojo.Pet;
+import co.com.ceiba.edu.drools.pojo.Firefighter;
+import co.com.ceiba.edu.drools.pojo.Pet.PetType;
+
+// The rules for the cat in the tree example
+
+rule "Call the fire department"
+    when
+        $p: Person($pet: pet, petCallCount > 0)
+        $cat: Pet(this == $pet, position == "on a limb", type == PetType.CAT)
+    then
+       System.out.println($p.getName()+": Hello... Fire Department? My Cat is on a tree. Please help me.");
+       Firefighter firefighter = new Firefighter("Fred");
+       insert(firefighter);
+end
+
+rule "Firefighter gets the cat down"
+    when
+        $f: Firefighter()
+        $p: Person($pet: pet, petCallCount > 0)
+        $cat: Pet(this == $pet, position == "on a limb", type == PetType.CAT)
+    then
+       System.out.println("Firefighter " +$f.getName()+": I'm getting the cat down.");
+       $cat.setPosition("on the street");
+       retract($f);
+       update($cat);
+end
+
+rule "Call a Cat when it is in a tree"
+    when
+        $p: Person($pet: pet, petCallCount == 0) 
+        $cat: Pet(this == $pet, position == "on a limb", type == PetType.CAT)
+    then
+       System.out.println($p.getName()+": "+$cat.getName() + " come down!");
+       $p.setPetCallCount($p.getPetCallCount()+1);
+       update($p);
+end
+
+rule "Appear a dog on the street"
+	when
+        $cat: Pet(position == "on the street", type == PetType.CAT)
+		not(Pet(type == PetType.DOG))
+	then
+		System.out.println("Appear a dog!");
+   		Pet dog = new Pet("Killer","on the street",Pet.PetType.DOG);
+       insert(dog);    
+end
+
+rule "The dog chase the cat"
+	when $p: Person($pet: pet) 
+		 $cat: Pet(this == $pet, position == "on the street", type == PetType.CAT)
+		 $dog: Pet(position == "on the street", type == PetType.DOG)
+	then
+		System.out.println($dog.getName()+" chasing "+$cat.getName()+", "+$cat.getName()+" climbed");
+		$cat.setPosition("on a limb");
+		$dog.setPosition("under the tree");	
+		$p.setPetCallCount(0);
+		update($p);
+		update($dog);
+		update($cat);	
+end
+
