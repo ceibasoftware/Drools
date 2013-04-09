@@ -8,8 +8,10 @@ import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderErrors;
 import org.drools.builder.KnowledgeBuilderFactory;
+import org.drools.definition.KnowledgeDefinition.KnowledgeType;
 import org.drools.io.ResourceFactory;
 import org.drools.io.impl.ClassPathResource;
+import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.StatelessKnowledgeSession;
 
 import co.com.drools.example.vacation.domain.CotizacionVacaciones;
@@ -18,6 +20,14 @@ public class TarifadorVacacionesGuvnor implements ITarifadorVacaciones{
 
 	@Override
 	public void tarifar(CotizacionVacaciones cot) {
-		//TODO: Implementación del Tarifador usando Guvnor
+		KnowledgeAgent kagent = KnowledgeAgentFactory.newKnowledgeAgent("MiAgente");
+		
+		kagent.applyChangeSet(ResourceFactory.newClassPathResource("tarifa/changesets/change-set.xml"));
+		KnowledgeBase kbase = kagent.getKnowledgeBase();
+		StatefulKnowledgeSession ksesion =  kbase.newStatefulKnowledgeSession();
+		
+		ksesion.insert(cot);
+		ksesion.fireAllRules();
+		
 	}
 }

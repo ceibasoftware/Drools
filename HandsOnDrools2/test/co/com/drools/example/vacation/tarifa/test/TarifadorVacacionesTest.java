@@ -26,7 +26,7 @@ public class TarifadorVacacionesTest {
 	 * @return
 	 */
 	private ITarifadorVacaciones getTarifadorVacaciones() {
-		return new TarifadorVacaciones();
+		return new TarifadorVacacionesGuvnor();
 	}
 	
 	@Test
