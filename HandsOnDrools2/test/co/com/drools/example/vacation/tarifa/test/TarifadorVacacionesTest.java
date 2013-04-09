@@ -26,16 +26,35 @@ public class TarifadorVacacionesTest {
 	 * @return
 	 */
 	private ITarifadorVacaciones getTarifadorVacaciones() {
-		return new TarifadorVacacionesGuvnor();
+		return new TarifadorVacaciones();
 	}
 	
 	@Test
-	public void testTodoICartagenaFam(){
-		ITarifadorVacaciones t = getTarifadorVacaciones();
-		CotizacionVacaciones cot = new CotizacionVacaciones("Todo Incluido","CARTAGENA","Familiar");
+	public void testTodoICartagenaInd(){
+		try{
+			ITarifadorVacaciones t = getTarifadorVacaciones();
+			CotizacionVacaciones cot = new CotizacionVacaciones("Todo Incluido","CARTAGENA","Individual");
 	
-		t.tarifar(cot);		
-		Assert.assertEquals("Tarifa para todo incluido - Cartagena - Familiar", 80, cot.getTarifaBase());
+			t.tarifar(cot);		
+			Assert.assertEquals("Tarifa para todo incluido - Cartagena - Individual", 100, cot.getTarifaBase());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	
+	}
+	
+	@Test
+	public void testHDStaMartaFam(){
+		try{
+			ITarifadorVacaciones t = getTarifadorVacaciones();
+			CotizacionVacaciones cot = new CotizacionVacaciones("HospedajeDesayuno","SANTA MARTA","Familiar");
+	
+			t.tarifar(cot);		
+			Assert.assertEquals("Tarifa para hosp + desayuna - Santa marta - Familiar", 90, cot.getTarifaBase());
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	
 	}
 	
 }

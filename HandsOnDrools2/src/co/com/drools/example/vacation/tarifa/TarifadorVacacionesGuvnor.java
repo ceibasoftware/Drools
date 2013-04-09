@@ -15,29 +15,9 @@ import org.drools.runtime.StatelessKnowledgeSession;
 import co.com.drools.example.vacation.domain.CotizacionVacaciones;
 
 public class TarifadorVacacionesGuvnor implements ITarifadorVacaciones{
-	
-	/* (non-Javadoc)
-	 * @see co.com.drools.example.vacation.tarifa.ITarifadorVacaciones#tarifar(co.com.drools.example.vacation.domain.CotizacionVacaciones)
-	 */
+
 	@Override
 	public void tarifar(CotizacionVacaciones cot) {
-		
-		StatelessKnowledgeSession ksession = createKSessionFromGuvnor();
-		ksession.execute(cot);
-		
+		//TODO: Implementación del Tarifador usando Guvnor
 	}
-	
-	private StatelessKnowledgeSession createKSessionFromGuvnor(){		
-		
-		KnowledgeAgent kagent = KnowledgeAgentFactory.newKnowledgeAgent( "MyAgent" );
-		kagent.applyChangeSet( ResourceFactory.newClassPathResource( "tarifa/changesets/change-set.xml" ) );
-		KnowledgeBase kbase = kagent.getKnowledgeBase();
-        StatelessKnowledgeSession ksession = kbase.newStatelessKnowledgeSession();
-        
-        ResourceFactory.getResourceChangeNotifierService().start();
-
-        ResourceFactory.getResourceChangeScannerService().start();
-        
-        return ksession;
-    }
 }
