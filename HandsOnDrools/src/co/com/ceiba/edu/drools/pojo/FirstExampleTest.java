@@ -27,7 +27,7 @@ public class FirstExampleTest {
         
 
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(new ClassPathResource("rules.drl"), ResourceType.DRL);
+        kbuilder.add(new ClassPathResource("rules.drl", getClass()), ResourceType.DRL);
         KnowledgeBuilderErrors errors = kbuilder.getErrors();
         if (errors.size() > 0) {
             for (KnowledgeBuilderError error : errors) {
@@ -40,6 +40,8 @@ public class FirstExampleTest {
 
         kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
+        
+       // KnowledgeRuntimeLoggerFactory.newConsoleLogger(ksession);
 
         Person person = new Person("Salaboy!");
         Pet pet = new Pet("mittens", "on a limb", Pet.PetType.CAT);
