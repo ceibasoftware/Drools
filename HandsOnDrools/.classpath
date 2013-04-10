@@ -6,5 +6,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/DroolsExpert"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/glazed"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/quartz"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jBPM Library"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

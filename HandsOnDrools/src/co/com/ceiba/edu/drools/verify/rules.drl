@@ -1,4 +1,4 @@
-package drools.cookbook.chapter01
+package co.com.ceiba.edu.drools.verify
 
 import drools.cookbook.chapter02.Server
 import java.util.Date

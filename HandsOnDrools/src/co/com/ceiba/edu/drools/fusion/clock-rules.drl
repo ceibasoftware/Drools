@@ -39,7 +39,7 @@ end
 rule "sistema de emergencia"
 when
     $emergency : EmergencySignal() from entry-point "emergency-channel"
-    FlightStatus(flight==$emergency.flight, this before[0m, 10m] $emergency) from entry-point "flight-arrival"
+    FlightStatus(flight==$emergency.flight, this before[0m, 1m] $emergency) from entry-point "flight-arrival"
 then
     // Emergencia en progreso.
     System.out.println("Emergencia en progreso. Vuelo: " + $emergency.getFlight());

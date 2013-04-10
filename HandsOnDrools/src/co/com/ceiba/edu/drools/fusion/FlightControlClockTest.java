@@ -76,7 +76,7 @@ public class FlightControlClockTest {
             if (flightStatus.getDistance() <= AIRPORT_AIR_SPACE_SCOPE) {
                 WorkingMemoryEntryPoint flightArrivalEntryPoint = ksession.getWorkingMemoryEntryPoint("flight-arrival");
                 flightArrivalEntryPoint.insert(flightStatus);
-                clock.advanceTime(7, TimeUnit.MINUTES);
+                clock.advanceTime(11, TimeUnit.MINUTES);
                 EmergencySignal emergencySignal = new EmergencySignal("AA001", 40);
                 ksession.getWorkingMemoryEntryPoint("emergency-channel").insert(emergencySignal);
             } else {
